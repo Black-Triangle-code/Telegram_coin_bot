@@ -4,7 +4,7 @@
 
 Бот для добывания криптовалюты, выполняя задания ботов [dogeclick](https://dogeclick.com/)
 
-Для работы трабуется установить [Selenoid](https://github.com/aerokube/selenoid) и зависимости проекта
+Для работы трабуется установить [Docker](https://www.docker.com/), [Selenoid](https://github.com/aerokube/selenoid) и зависимости проекта
 
 ## План действий
 
