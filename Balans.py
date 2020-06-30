@@ -14,7 +14,8 @@ m = 0
 
 while(True):
     if x == 23:
-        print("Готово!")
+        print("Всего добыто:")
+        print(m)
         break
     cur.execute(f"SELECT PHONE FROM Account WHERE ID = '{x}'")
     time.sleep(0.4)
@@ -48,6 +49,6 @@ while(True):
         waitin = float(qq)
 
     m = m + waitin
-    print(m)
+    #print(m)
     x = x + 1
     time.sleep(1)
