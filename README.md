@@ -4,6 +4,8 @@
 
 Бот для добывания криптовалюты, выполняя задания ботов [dogeclick](https://dogeclick.com/)
 
+Для работы трабуется установить [Selenoid](https://github.com/aerokube/selenoid) и зависимости проекта
+
 ## План действий
 
 0. Создать аккаунт телеграм и начать диалог с ботом из конгломерата [dogeclick](https://dogeclick.com/)
@@ -52,3 +54,11 @@
 * Спам (запрет писать сообщения) = от 48 часов до вечного
 
 * Срок блокировки номера телефона = 6 месяцев (Если ваш аккаунт заблокировали, зарегистрировать новый аккаунт на этот же номер телефона можно будет не раньше чем через пол года)
+
+##Поддержать автора:
+[Donation Alerts](https://www.donationalerts.com/r/black_triangle)
+Bitcoin: 1AWBMoeV8UEybQi4QrQMmeFX1sXvRLDeCn
+Ethereum: 0xB151c82A264eF0EA848c120444173658BFA18Cf9
+DASH: XcNtFGW1ydGLudvTPWoBvPZZxG844EvksR
+Zcash: t1hCJwasRozdkoaK9HLpngoEVPQhEZpxdFT
+Monero: 41iNuQsc6GjZofH3XkKwNYVSXVsrjipfVjjNR3nbsL5XjJMFTfykW1T6CkYz1StdXH2t8dhnjUTT9FwEPpbsFVxjHuuYabQ
