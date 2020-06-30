@@ -132,8 +132,8 @@ while(True):
                         time.sleep(2)
                 else:
                     waitin = 15
-                    data = requests.get(url_rec).json
-                    print(data)
+                    data1 = requests.get(url_rec).json
+                    print(data1)
 
                     my_file = open('per10.txt', 'w')
                     my_file.write(url_rec)
