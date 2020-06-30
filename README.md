@@ -68,3 +68,5 @@
 * Zcash: t1hCJwasRozdkoaK9HLpngoEVPQhEZpxdFT
 
 * Monero: 41iNuQsc6GjZofH3XkKwNYVSXVsrjipfVjjNR3nbsL5XjJMFTfykW1T6CkYz1StdXH2t8dhnjUTT9FwEPpbsFVxjHuuYabQ
+
+* Litecoin: LNpw5QS5fvH1NW5AMp35zzMs1FYKuAUuPP
