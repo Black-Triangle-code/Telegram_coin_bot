@@ -15,6 +15,7 @@
 4. Если мы хотим узнать сколько заработал каждый бот. Останавливаем пункт 3 и запускаем скрипт Balans.py и ждем завершения, скрипт выведет сколько заработал каждый бот и итоговую ссумму
 
 ## Что еще важно помнить.
+При массовой регистрации аккаунтов рекомендуется менять IP адрес не реже чем на 10 аккаунтов и ставить пароль 2х этапной аутентиффикации, получать API, взаимодействовать с ботами не сразу а через 3-5 дней отлёжки
 ### Лимиты Telegram (актуально на июнь 2020)
 
 * Количество участников в группе = 200 человек
@@ -55,10 +56,15 @@
 
 * Срок блокировки номера телефона = 6 месяцев (Если ваш аккаунт заблокировали, зарегистрировать новый аккаунт на этот же номер телефона можно будет не раньше чем через пол года)
 
-##Поддержать автора:
-[Donation Alerts](https://www.donationalerts.com/r/black_triangle)
-Bitcoin: 1AWBMoeV8UEybQi4QrQMmeFX1sXvRLDeCn
-Ethereum: 0xB151c82A264eF0EA848c120444173658BFA18Cf9
-DASH: XcNtFGW1ydGLudvTPWoBvPZZxG844EvksR
-Zcash: t1hCJwasRozdkoaK9HLpngoEVPQhEZpxdFT
-Monero: 41iNuQsc6GjZofH3XkKwNYVSXVsrjipfVjjNR3nbsL5XjJMFTfykW1T6CkYz1StdXH2t8dhnjUTT9FwEPpbsFVxjHuuYabQ
+## Поддержать автора:
+* [Donation Alerts](https://www.donationalerts.com/r/black_triangle)
+
+* Bitcoin: 1AWBMoeV8UEybQi4QrQMmeFX1sXvRLDeCn
+
+* Ethereum: 0xB151c82A264eF0EA848c120444173658BFA18Cf9
+
+* DASH: XcNtFGW1ydGLudvTPWoBvPZZxG844EvksR
+
+* Zcash: t1hCJwasRozdkoaK9HLpngoEVPQhEZpxdFT
+
+* Monero: 41iNuQsc6GjZofH3XkKwNYVSXVsrjipfVjjNR3nbsL5XjJMFTfykW1T6CkYz1StdXH2t8dhnjUTT9FwEPpbsFVxjHuuYabQ
