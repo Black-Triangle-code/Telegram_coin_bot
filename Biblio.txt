@@ -1,0 +1,13 @@
+Telethon
+beautifulsoup4
+colorama
+request
+requests
+selenium
+urllib3
+pysqlite3
+webbrowser
+hashlib
+json
+subprocess
+bs4
