@@ -1,6 +1,6 @@
 # Telegram_coin_bot
 ![Бот для добывания криптовалюты, выполняя задания ботов dogeclick
-](cfce13b13a2a.png)
+](preview.png)
 
 Бот для добывания криптовалюты, выполняя задания ботов [dogeclick](https://dogeclick.com/)
 
