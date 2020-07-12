@@ -1,7 +1,7 @@
 import os
 import time
 import logging
-import sqlite3
+import utils
 
 from bs4 import BeautifulSoup
 import requests
@@ -25,13 +25,7 @@ def skip_task(client, message):
     time.sleep(5)
 
 
-with sqlite3.connect('accounts.db') as conn:
-    cur = conn.cursor()
-
-    cur.execute("SELECT id, phone, password, api_id, api_hash FROM accounts")
-    accounts = cur.fetchall()
-
-    cur.close()
+accounts = utils.get_all_accounts()
 
 for x, phone, password, api_id, api_hash in accounts:
     path_to_bad_urls = os.path.join(config.URLS_FOLDER_PATH, f"{x}.txt")

@@ -1,17 +1,9 @@
-import sqlite3
+import utils
 import time
 from telethon.sync import TelegramClient
 import config
 
-with sqlite3.connect('accounts.db') as conn:
-    cur = conn.cursor()
-
-    cur.execute("SELECT id, phone, password, api_id, api_hash FROM accounts")
-    accounts = cur.fetchall()
-
-    cur.close()
-
-x = 1
+accounts = utils.get_all_accounts()
 total_balance = 0
 
 for x, phone, password, api_id, api_hash in accounts:

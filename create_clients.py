@@ -1,14 +1,7 @@
 from telethon.sync import TelegramClient
-import sqlite3
+import utils
 
-with sqlite3.connect('accounts.db') as conn:
-    cur = conn.cursor()
-
-    cur.execute("SELECT id, phone, password, api_id, api_hash FROM accounts")
-    accounts = cur.fetchall()
-
-    cur.close()
-
+accounts = utils.get_all_accounts()
 
 for x, phone, password, api_id, api_hash in accounts:
     print(f"Очередь аккаунта № {x}\n"
