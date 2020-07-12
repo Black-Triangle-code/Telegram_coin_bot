@@ -32,7 +32,7 @@ for x, phone, password, api_id, api_hash in accounts:
     no_tasks_count = 0  # Кол-во раз, когда не получилось найти заданий
     logging.info(f"Очередь аккаунта № {x}")
     logging.info(f"Входим в аккаунт: {phone}")
-    client = TelegramClient(f"anon{x}", api_id, api_hash)
+    client = TelegramClient(f"{config.TELETHON_SESSION_NAME}{x}", api_id, api_hash)
     client.start()
 
     messages = client.get_messages(config.BOT_ADDRESS)

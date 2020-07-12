@@ -8,7 +8,7 @@ total_balance = 0
 
 for x, phone, password, api_id, api_hash in accounts:
     print(f"Входим в аккаунт: {phone}")
-    client = TelegramClient(f"anon{x}", api_id, api_hash)
+    client = TelegramClient(f"{config.TELETHON_SESSION_NAME}{x}", api_id, api_hash)
     client.start()
 
     if client.get_messages(config.BOT_ADDRESS).total == 0:
