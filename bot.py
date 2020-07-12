@@ -8,12 +8,12 @@ import requests
 
 from telethon.tl.functions.messages import GetBotCallbackAnswerRequest
 from telethon.sync import TelegramClient
-from config import *
+import config
 
-requests.adapters.DEFAULT_RETRIES = 2
+requests.adapters.DEFAULT_RETRIES = config.DEFAULT_RETRIES
 logging.basicConfig(level=logging.INFO, format='%(asctime)s %(levelname)s:%(message)s')
 
-os.makedirs(URLS_FOLDER_PATH, exist_ok=True)
+os.makedirs(config.URLS_FOLDER_PATH, exist_ok=True)
 
 
 def skip_task(client, message, litecoin_bot):
@@ -34,7 +34,7 @@ with sqlite3.connect('accounts.db') as conn:
     cur.close()
 
 for x, phone, password, api_id, api_hash in accounts:
-    path_to_bad_urls = os.path.join(URLS_FOLDER_PATH, f"{x}.txt")
+    path_to_bad_urls = os.path.join(config.URLS_FOLDER_PATH, f"{x}.txt")
     no_tasks_count = 0  # Кол-во раз, когда не получилось найти заданий
     logging.info(f"Очередь аккаунта № {x}")
     logging.info(f"Входим в аккаунт: {phone}")
@@ -52,11 +52,11 @@ for x, phone, password, api_id, api_hash in accounts:
         with open(path_to_bad_urls, "a+") as f:
             pass
 
-    for loop_count in range(TASKS_COUNT):
-        logging.info(f"Приступаем к {loop_count + 1} заданию из {TASKS_COUNT}")
+    for loop_count in range(config.TASKS_COUNT):
+        logging.info(f"Приступаем к {loop_count + 1} заданию из {config.TASKS_COUNT}")
         time.sleep(3)
 
-        if no_tasks_count == TRIES_COUNT:
+        if no_tasks_count == config.TRIES_COUNT:
             logging.info("Заданий больше нет. Переходим на другой аккаунт")
             break
 
@@ -109,7 +109,7 @@ for x, phone, password, api_id, api_hash in accounts:
             logging.info(f"Ожидаем {wait_time} c.")
             time.sleep(wait_time)
         message.mark_read()
-        logging.info(f"Выполнено: {loop_count + 1} из {TASKS_COUNT}")
+        logging.info(f"Выполнено: {loop_count + 1} из {config.TASKS_COUNT}")
 
         with open(path_to_bad_urls, "a") as f:
             f.write(f"{url}\n")
