@@ -20,6 +20,7 @@ def console_picture():
     time.sleep(0.5)
     print("                                     |___/                                    ")
     time.sleep(0.5)
+    
 console_picture()
 print("Нажми Enter чтобы запустить...")
 input()
