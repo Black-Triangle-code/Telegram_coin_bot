@@ -13,8 +13,8 @@ x = 1
 
 while(True):
     if x == 32:
-        print("Все что можно выведено на кошельки")
-        print(m)
+        
+        print("Конец")
         break
     cur.execute(f"SELECT PHONE FROM Account WHERE ID = '{x}'")
     time.sleep(0.4)
