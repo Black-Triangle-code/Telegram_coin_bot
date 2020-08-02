@@ -1,54 +1,25 @@
-import sqlite3
+import utils
 import time
-from telethon import TelegramClient
-from telethon import sync, events
-import re
-import json
+from telethon.sync import TelegramClient
+import config
 
+accounts = utils.get_all_accounts()
+total_balance = 0
 
-db = sqlite3.connect('Account.db')
-cur = db.cursor()
-
-x = 1
-m = 0
-
-while(True):
-    if x == 23:
-        print("Всего добыто:")
-        print(m)
-        break
-    cur.execute(f"SELECT PHONE FROM Account WHERE ID = '{x}'")
-    time.sleep(0.4)
-    Phone = str(cur.fetchone()[0])
-    print("Входим в аккаунт: " + Phone)
-
-    cur.execute(f"SELECT API_ID FROM Account WHERE ID = '{x}'")
-    time.sleep(0.4)
-    api_id = str(cur.fetchone()[0])
-    cur.execute(f"SELECT API_HASH FROM Account WHERE ID = '{x}'")
-    time.sleep(0.4)
-    api_hash = str(cur.fetchone()[0])
-    session = str("anon" + str(x))
-    client = TelegramClient(session, api_id, api_hash)
+for x, phone, password, api_id, api_hash in accounts:
+    print(f"Входим в аккаунт: {phone}")
+    client = TelegramClient(f"{config.TELETHON_SESSION_NAME}{x}", api_id, api_hash)
     client.start()
 
-    dlgs = client.get_dialogs()
-    for dlg in dlgs:
-        if dlg.title == 'LTC Click Bot':
-            tegmo = dlg
+    if client.get_messages(config.BOT_ADDRESS).total == 0:
+        client.send_message(config.BOT_ADDRESS, "/start")
+        time.sleep(1)
 
-    client.send_message('LTC Click Bot', "/balance")
+    client.send_message(config.BOT_ADDRESS, "/balance")
     time.sleep(3)
-    msgs = client.get_messages(tegmo, limit=1)
+    text = client.get_messages(config.BOT_ADDRESS, limit=1)[0].message
+    balance = float(text.replace('Available balance: ', '').replace(' LTC', ''))
+    total_balance += balance
+    print(f"Баланс аккаунта № {x} {balance} LTC")
 
-    for mes in msgs:
-        str_a = str(mes.message)
-        zz = str_a.replace('Available balance: ', '')
-        qq = zz.replace(' LTC', '')
-        print(qq)
-        waitin = float(qq)
-
-    m = m + waitin
-    #print(m)
-    x = x + 1
-    time.sleep(1)
+print(f"Общий баланс со всех аккаунтов: {total_balance} LTC")

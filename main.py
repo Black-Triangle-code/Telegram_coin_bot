@@ -1,10 +1,11 @@
 import os
 import subprocess
 import sys
-from colorama import init, Fore, Back, Style
+from colorama import init, Fore, Style
 import time
 
 init()
+
 
 def console_picture():
     print(Style.BRIGHT + Fore.YELLOW)
@@ -20,10 +21,11 @@ def console_picture():
     time.sleep(0.5)
     print("                                     |___/                                    ")
     time.sleep(0.5)
-console_picture()
-print("Нажми Enter чтобы запустить...")
-input()
 
-while (True):
-    process = subprocess.Popen([sys.executable, "bot_V2.py"])
+
+console_picture()
+input("Нажми Enter чтобы запустить...")
+
+while True:
+    process = subprocess.Popen([sys.executable, "bot.py"])
     process.wait()
