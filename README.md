@@ -1,4 +1,4 @@
-# Telegram_coin_bot
+# Telegram_coin_bot [REMASTERED BY V1A0]
 ![Бот для добывания криптовалюты, выполняя задания ботов dogeclick
 ](preview.png)
 
