@@ -4,10 +4,15 @@ from telethon import TelegramClient
 from telethon import sync, events
 import re
 import json
-
+import configparser
 
 db = sqlite3.connect('Account.db')
 cur = db.cursor()
+
+config = configparser.ConfigParser()
+config.read("config.txt")
+
+maxbot = config["TCB"]["maxbot"]
 
 x = 1
 m = 0
