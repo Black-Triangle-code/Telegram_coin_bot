@@ -1,6 +1,11 @@
 from telethon import TelegramClient
 import sqlite3
 import time
+import configparser
+
+config = configparser.ConfigParser()
+config.read("config.txt")
+maxbot = config["TCB"]["maxbot"]
 
 db = sqlite3.connect('Account.db')
 cur = db.cursor()
@@ -28,6 +33,6 @@ while(True):
     client.start()
     x = x + 1
     time.sleep(1)
-    if x == 32:
+    if x == maxbot:
         print("Aккаунты активированы!")
         break

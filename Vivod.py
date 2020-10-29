@@ -4,7 +4,11 @@ from telethon import TelegramClient
 from telethon import sync, events
 import re
 import json
+import configparser
 
+config = configparser.ConfigParser()
+config.read("config.txt")
+maxbot = config["TCB"]["maxbot"]
 
 db = sqlite3.connect('Account.db')
 cur = db.cursor()
@@ -12,7 +16,7 @@ cur = db.cursor()
 x = 1
 
 while(True):
-    if x == 32:
+    if x == maxbot:
         
         print("Конец")
         break

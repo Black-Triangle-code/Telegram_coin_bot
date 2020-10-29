@@ -21,8 +21,6 @@ def console_picture():
     print("                                     |___/                                    ")
     time.sleep(0.5)
 console_picture()
-print("Нажми Enter чтобы запустить...")
-input()
 
 while (True):
     process = subprocess.Popen([sys.executable, "bot_V2.py"])

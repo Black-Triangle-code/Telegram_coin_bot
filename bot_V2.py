@@ -13,6 +13,11 @@ import webbrowser
 import urllib.request
 import os
 import sqlite3
+import configparser
+
+config = configparser.ConfigParser()
+config.read("config.txt")
+maxbot = config["TCB"]["maxbot"]
 
 class RunChromeTests():
     def testMethod(self):
@@ -34,8 +39,8 @@ while(True):
     n = 0
     u = 0
     print("Очередь аккаунта № " + str(x))
-    if x == 23:
-        x = x - 22
+    if x == maxbot:
+        x = x - maxbot + 1
     cur.execute(f"SELECT PHONE FROM Account WHERE ID = '{x}'")
     time.sleep(0.4)
     Phone = str(cur.fetchone()[0])
@@ -145,5 +150,5 @@ while(True):
                         break
     time.sleep(1)
     x = x + 1
-    if x == 23:
+    if x == maxbot:
         break

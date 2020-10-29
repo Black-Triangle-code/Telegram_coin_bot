@@ -6,19 +6,18 @@ import re
 import json
 import configparser
 
-db = sqlite3.connect('Account.db')
-cur = db.cursor()
-
 config = configparser.ConfigParser()
 config.read("config.txt")
-
 maxbot = config["TCB"]["maxbot"]
+
+db = sqlite3.connect('Account.db')
+cur = db.cursor()
 
 x = 1
 m = 0
 
 while(True):
-    if x == 23:
+    if x == maxbot:
         print("Всего добыто:")
         print(m)
         break
