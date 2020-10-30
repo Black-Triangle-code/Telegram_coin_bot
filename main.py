@@ -23,5 +23,5 @@ def console_picture():
 console_picture()
 
 while (True):
-    process = subprocess.Popen([sys.executable, "bot_V2.py"])
+    process = subprocess.Popen([sys.executable, "bot_LTC.py"])
     process.wait()

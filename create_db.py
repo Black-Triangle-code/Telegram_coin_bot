@@ -10,21 +10,30 @@ cur.execute("""CREATE TABLE IF NOT EXISTS Account (
     API_ID TEXT,
     API_HASH TEXT,
     ACTIVITY TEXT,
-    LITECOIN TEXT
+    LTC TEXT,
+    DOGE TEXT,
+    BCH TEXT,
+    BTC TEXT,
+    ZEC TEXT
+    
 )""")
 
 db.commit()
 
-Phone = "+88005553535"
-password = "13236546460"
-Api_id = "1488"
-Api_hash = "05xxxxxxx45xxxxxxx435xxxxx435xxxxxxx9"
+Phone = "0"
+password = "1"
+Api_id = "2"
+Api_hash = "3"
 Activity = "ON"
-Litecoin = "ltc1qlhs4e459wwtu8sx7a4rtumtffs9lr4ktmfl6ny"
+Ltc = "4"
+Doge = "5"
+Bch = "6"
+Btc = "7"
+Zec = "8"
 
 cur.execute(f"SELECT PHONE FROM Account WHERE PHONE = '{Phone}'")
 if cur.fetchone() is None:
-    cur.execute("""INSERT INTO Account(PHONE, PASS, API_ID, API_HASH, ACTIVITY, LITECOIN) VALUES (?,?,?,?,?,?);""", (Phone, password, Api_id, Api_hash, Activity, Litecoin))
+    cur.execute("""INSERT INTO Account(PHONE, PASS, API_ID, API_HASH, ACTIVITY, LTC, DOGE, BCH, BTC, ZEC) VALUES (?,?,?,?,?,?,?,?,?,?);""", (Phone, password, Api_id, Api_hash, Activity, Ltc, Doge, Bch, Btc, Zec))
     db.commit()
     print("Зарегистрированно!")
     for value in cur.execute("SELECT * FROM Account"):
