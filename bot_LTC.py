@@ -93,7 +93,7 @@ while(True):
                 qq = zz.replace(' LTC', '')
                 balFin = float(qq)
                 profit = balFin - balStart
-                output1 = "За раунд на " + Phone + " добыто " + str(profit) + '\n' + "Всего на нем сейчас " + str(balFin)
+                output1 = "За раунд на " + Phone + " добыто " + str('{:0.8f}'.format(profit)) + '\n' + "Всего на нем сейчас " + str('{:0.8f}'.format(balFin))
                 bot.sendMessage(chatId, output1)
 
             print("Переходим на другой аккаунт")
@@ -110,7 +110,7 @@ while(True):
                 qq = zz.replace(' LTC', '')
                 balFin = float(qq)
                 profit = balFin - balStart
-                output1 = "За раунд на " + Phone + " добыто " + str('{:0.9f}'.format(profit)) + '\n' + "Всего на нем сейчас " + str('{:0.9f}'.format(balFin))
+                output1 = "За раунд на " + Phone + " добыто " + str('{:0.8f}'.format(profit)) + '\n' + "Всего на нем сейчас " + str('{:0.8f}'.format(balFin))
                 bot.sendMessage(chatId, output1)
 
             print("Переходим на другой аккаунт")
