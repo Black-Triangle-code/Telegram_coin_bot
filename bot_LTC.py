@@ -14,10 +14,15 @@ import urllib.request
 import os
 import sqlite3
 import configparser
+import telepot
 
 config = configparser.ConfigParser()
 config.read("config.txt")
 maxbot = config["TCB"]["maxbot"]
+chatId = config["TCB"]["chatid"]
+botId = config["TCB"]["botid"]
+
+bot = telepot.Bot(botId)
 
 class RunChromeTests():
     def testMethod(self):
@@ -55,21 +60,59 @@ while(True):
     session = str("anon" + str(x))
     client = TelegramClient(session, api_id, api_hash)
     client.start()
+    print("Успешно вошли")
 
     dlgs = client.get_dialogs()
     for dlg in dlgs:
         if dlg.title == 'LTC Click Bot':
             tegmo = dlg
+
+    client.send_message('LTC Click Bot', "/balance")
+    time.sleep(3)
+    msgs = client.get_messages(tegmo, limit=1)
+
+    for mes in msgs:
+        str_a = str(mes.message)
+        zz = str_a.replace('Available balance: ', '')
+        qq = zz.replace(' LTC', '')
+        balStart = (float(qq))
+
     client.send_message('LTC Click Bot', "🖥 Visit sites")
     time.sleep(30)
     while True:
         time.sleep(6)
         print("Нет заданий уже: " + str(u) + " раз")
         if u == 2:
+            client.send_message('LTC Click Bot', "/balance")
+            time.sleep(3)
+            msgs = client.get_messages(tegmo, limit=1)
+
+            for mes in msgs:
+                str_a = str(mes.message)
+                zz = str_a.replace('Available balance: ', '')
+                qq = zz.replace(' LTC', '')
+                balFin = float(qq)
+                profit = balFin - balStart
+                output1 = "За раунд на " + Phone + " добыто " + str(profit) + '\n' + "Всего на нем сейчас " + str(balFin)
+                bot.sendMessage(chatId, output1)
+
             print("Переходим на другой аккаунт")
             break
         print("Пройдено циклов: " + str(n))
         if n == 10:
+            client.send_message('LTC Click Bot', "/balance")
+            time.sleep(3)
+            msgs = client.get_messages(tegmo, limit=1)
+
+            for mes in msgs:
+                str_a = str(mes.message)
+                zz = str_a.replace('Available balance: ', '')
+                qq = zz.replace(' LTC', '')
+                balFin = float(qq)
+                profit = balFin - balStart
+                output1 = "За раунд на " + Phone + " добыто " + str('{:0.9f}'.format(profit)) + '\n' + "Всего на нем сейчас " + str('{:0.9f}'.format(balFin))
+                bot.sendMessage(chatId, output1)
+
             print("Переходим на другой аккаунт")
             break
         msgs = client.get_messages(tegmo, limit=1)
