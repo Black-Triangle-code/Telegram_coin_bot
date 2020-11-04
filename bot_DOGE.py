@@ -66,33 +66,33 @@ while(True):
 
     dlgs = client.get_dialogs()
     for dlg in dlgs:
-        if dlg.title == 'LTC Click Bot':
+        if dlg.title == 'DOGE Click Bot':
             tegmo = dlg
 
-    client.send_message('LTC Click Bot', "/balance")
+    client.send_message('DOGE Click Bot', "/balance")
     time.sleep(3)
     msgs = client.get_messages(tegmo, limit=1)
 
     for mes in msgs:
         str_a = str(mes.message)
         zz = str_a.replace('Available balance: ', '')
-        qq = zz.replace(' LTC', '')
+        qq = zz.replace(' DOGE', '')
         balStart = (float(qq))
 
-    client.send_message('LTC Click Bot', "🖥 Visit sites")
+    client.send_message('DOGE Click Bot', "🖥 Visit sites")
     time.sleep(30)
     while True:
         time.sleep(6)
         print("Нет заданий уже: " + str(u) + " раз")
         if u == errors:
-            client.send_message('LTC Click Bot', "/balance")
+            client.send_message('DOGE Click Bot', "/balance")
             time.sleep(3)
             msgs = client.get_messages(tegmo, limit=1)
 
             for mes in msgs:
                 str_a = str(mes.message)
                 zz = str_a.replace('Available balance: ', '')
-                qq = zz.replace(' LTC', '')
+                qq = zz.replace(' DOGE', '')
                 balFin = float(qq)
                 profit = balFin - balStart
                 output1 = "За раунд на " + str(x) + "-м добыто " + str('{:0.8f}'.format(profit)) + '\n' + "Всего на нем сейчас " + str('{:0.8f}'.format(balFin))
@@ -102,14 +102,14 @@ while(True):
             break
         print("Пройдено циклов: " + str(n))
         if n == cycles:
-            client.send_message('LTC Click Bot', "/balance")
+            client.send_message('DOGE Click Bot', "/balance")
             time.sleep(3)
             msgs = client.get_messages(tegmo, limit=1)
 
             for mes in msgs:
                 str_a = str(mes.message)
                 zz = str_a.replace('Available balance: ', '')
-                qq = zz.replace(' LTC', '')
+                qq = zz.replace(' DOGE', '')
                 balFin = float(qq)
                 profit = balFin - balStart
                 output1 = "За раунд на " + str(x) + "-м добыто " + str('{:0.8f}'.format(profit)) + '\n' + "Всего на нем сейчас " + str('{:0.8f}'.format(balFin))
@@ -126,7 +126,7 @@ while(True):
                 qq = zz.replace('seconds to get your reward.', '')
                 waitin = int(qq)
                 print ("Ждать придется: ", waitin)
-                client.send_message('LTC Click Bot', "/visit")
+                client.send_message('DOGE Click Bot', "/visit")
                 time.sleep(3)
                 msgs2 = client.get_messages(tegmo, limit=1)
                 for mes2 in msgs2:
@@ -145,7 +145,7 @@ while(True):
                     if re.search(r'\bSwitch to reCAPTCHA\b', mystr):
                         from telethon.tl.functions.messages import GetBotCallbackAnswerRequest
                         resp = client(GetBotCallbackAnswerRequest(
-                            'LTC Click Bot',
+                            'DOGE Click Bot',
                             message_id,
                             data=button_data
                         ))
@@ -163,9 +163,9 @@ while(True):
                 print(u)
 
             else:
-                messages = client.get_messages('Litecoin_click_bot')
+                messages = client.get_messages('Dogecoin_click_bot')
                 url_rec = messages[0].reply_markup.rows[0].buttons[0].url
-                f = open("tempLTC.txt")
+                f = open("tempDOGE.txt")
                 fd = f.read()
                 if fd == url_rec:
                     print("Найдено повторение переменной")
@@ -185,7 +185,7 @@ while(True):
                     data1 = requests.get(url_rec).json
                     print(data1)
 
-                    my_file = open('tempLTC.txt', 'w')
+                    my_file = open('tempDOGE.txt', 'w')
                     my_file.write(url_rec)
                     print("Новая запись в файле сделана")
                     time.sleep(16)
