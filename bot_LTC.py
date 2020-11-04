@@ -92,6 +92,8 @@ while(True):
     while True:
         time.sleep(6)
         print("Нет заданий уже: " + str(u) + " раз")
+        output0="Нет заданий уже: " + str(u) + " раз"
+        bot.sendMessage(chatId2, output0)
         if u == errors:
             client.send_message('LTC Click Bot', "/balance")
             time.sleep(3)
@@ -111,6 +113,8 @@ while(True):
             bot.sendMessage(chatId2, "Переходим на другой аккаунт")
             break
         print("Пройдено циклов: " + str(n))
+        output0="Пройдено циклов: " + str(n)
+        bot.sendMessage(chatId2, output0)
         if n == cycles:
             client.send_message('LTC Click Bot', "/balance")
             time.sleep(3)
