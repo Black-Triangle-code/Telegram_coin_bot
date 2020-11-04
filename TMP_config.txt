@@ -1,0 +1,6 @@
+[TCB]
+maxbot=
+chatid=
+botid=
+cycles=
+errors=
