@@ -43,7 +43,7 @@ cur = db.cursor()
 
 x = 1
 
-bot.sendMessage(chatId2, "Начинаем добывать DOGE")
+bot.sendMessage(chatId2, "Начинаем добывать LTC")
 
 while(True):
     n = 0
