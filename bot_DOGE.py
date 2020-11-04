@@ -20,6 +20,7 @@ config = configparser.ConfigParser()
 config.read("config.txt")
 maxbot = config["TCB"]["maxbot"]
 chatId = config["TCB"]["chatid"]
+chatId2 = config["TCB"]["chatid2"]
 botId = config["TCB"]["botid"]
 cycles = int(config["TCB"]["cycles"])
 errors = int(config["TCB"]["errors"])
@@ -42,16 +43,22 @@ cur = db.cursor()
 
 x = 1
 
+bot.sendMessage(chatId2, "Начинаем добывать DOGE")
+
 while(True):
     n = 0
     u = 0
     print("Очередь аккаунта № " + str(x))
+    output0 = "Очередь аккаунта № " + str(x)
+    bot.sendMessage(chatId2, output0)
     if x == maxbot:
         x = x - maxbot + 1
     cur.execute(f"SELECT PHONE FROM Account WHERE ID = '{x}'")
     time.sleep(0.4)
     Phone = str(cur.fetchone()[0])
     print("Входим в аккаунт: " + Phone)
+    output0 = "Входим в аккаунт: " + Phone
+    bot.sendMessage(chatId2, output0)
 
     cur.execute(f"SELECT API_ID FROM Account WHERE ID = '{x}'")
     time.sleep(0.4)
@@ -63,6 +70,7 @@ while(True):
     client = TelegramClient(session, api_id, api_hash)
     client.start()
     print("Успешно вошли")
+    bot.sendMessage(chatId2, "Успешно вошли")
 
     dlgs = client.get_dialogs()
     for dlg in dlgs:
@@ -97,8 +105,10 @@ while(True):
                 profit = balFin - balStart
                 output1 = "За раунд на " + str(x) + "-м добыто " + str('{:0.8f}'.format(profit)) + '\n' + "Всего на нем сейчас " + str('{:0.8f}'.format(balFin))
                 bot.sendMessage(chatId, output1)
+                bot.sendMessage(chatId2, output1)
 
             print("Переходим на другой аккаунт")
+            bot.sendMessage(chatId2, "Переходим на другой аккаунт")
             break
         print("Пройдено циклов: " + str(n))
         if n == cycles:
@@ -114,8 +124,10 @@ while(True):
                 profit = balFin - balStart
                 output1 = "За раунд на " + str(x) + "-м добыто " + str('{:0.8f}'.format(profit)) + '\n' + "Всего на нем сейчас " + str('{:0.8f}'.format(balFin))
                 bot.sendMessage(chatId, output1)
+                bot.sendMessage(chatId2, output1)
 
             print("Переходим на другой аккаунт")
+            bot.sendMessage(chatId2, "Переходим на другой аккаунт")
             break
         msgs = client.get_messages(tegmo, limit=1)
         for mes in msgs:
@@ -159,6 +171,7 @@ while(True):
             elif re.search(r'\bSorry\b', mes.message):
 
                 print("Найдено Sorry")
+                bot.sendMessage(chatId2, "Найдено Sorry")
                 u = u + 1
                 print(u)
 
@@ -169,6 +182,7 @@ while(True):
                 fd = f.read()
                 if fd == url_rec:
                     print("Найдено повторение переменной")
+                    bot.sendMessage(chatId2, "Найдено повторение переменной")
                     msgs2 = client.get_messages(tegmo, limit=1)
                     for mes2 in msgs2:
                         button_data = mes2.reply_markup.rows[1].buttons[1].data
@@ -188,6 +202,7 @@ while(True):
                     my_file = open('tempDOGE.txt', 'w')
                     my_file.write(url_rec)
                     print("Новая запись в файле сделана")
+                    bot.sendMessage(chatId2, "Новая запись в файле сделана")
                     time.sleep(16)
                     n = n + 1
 
