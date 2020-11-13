@@ -61,13 +61,50 @@ while(True):
             Adolf = round(waitin, 5)
             Eva = float(Adolf) - 0.00001
             vivod = float(Eva)
-            print("Выводим: " + str(vivod))
+            print("Выводим: " + str(vivod) + " LTC")
             time.sleep(3)
             client.send_message('LTC Click Bot', str(vivod))
             time.sleep(3)
             client.send_message('LTC Click Bot', "✅ Confirm")
             time.sleep(3)
             client.send_message('LTC Click Bot', "🏠 Menu")
+            time.sleep(3)
+            
+            #----------------------------------------------------------------
+            
+            dlgs = client.get_dialogs()
+    for dlg in dlgs:
+        if dlg.title == 'DOGE Click Bot':
+            tegmo = dlg
+
+    client.send_message('DOGE Click Bot', "/balance")
+    time.sleep(3)
+    msgs = client.get_messages(tegmo, limit=1)
+
+    for mes in msgs:
+        str_a = str(mes.message)
+        zz = str_a.replace('Available balance: ', '')
+        qq = zz.replace(' DOGE', '')
+        print(qq)
+        waitin = float(qq)
+
+        if waitin >= 4:
+            client.send_message('DOGE Click Bot', "💵 Withdraw")
+            time.sleep(3)
+            cur.execute(f"SELECT DOGE FROM Account WHERE ID = '{x}'")
+            time.sleep(0.4)
+            dogecoin = str(cur.fetchone()[0])
+            client.send_message('DOGE Click Bot', dogeecoin)
+            Adolf = round(waitin, 5)
+            Eva = float(Adolf) - 0.1
+            vivod = float(Eva)
+            print("Выводим: " + str(vivod) + " DOGE")
+            time.sleep(3)
+            client.send_message('DOGE Click Bot', str(vivod))
+            time.sleep(3)
+            client.send_message('DOGE Click Bot', "✅ Confirm")
+            time.sleep(3)
+            client.send_message('DOGE Click Bot', "🏠 Menu")
             time.sleep(3)
 
     x = x + 1
