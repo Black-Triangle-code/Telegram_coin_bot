@@ -94,7 +94,7 @@ while(True):
             cur.execute(f"SELECT DOGE FROM Account WHERE ID = '{x}'")
             time.sleep(0.4)
             dogecoin = str(cur.fetchone()[0])
-            client.send_message('DOGE Click Bot', dogeecoin)
+            client.send_message('DOGE Click Bot', dogecoin)
             Adolf = round(waitin, 5)
             Eva = float(Adolf) - 0.1
             vivod = float(Eva)
