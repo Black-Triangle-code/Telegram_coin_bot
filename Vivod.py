@@ -54,7 +54,7 @@ while(True):
         if waitin >= 0.0004:
             client.send_message('LTC Click Bot', "💵 Withdraw")
             time.sleep(3)
-            cur.execute(f"SELECT LITECOIN FROM Account WHERE ID = '{x}'")
+            cur.execute(f"SELECT LTC FROM Account WHERE ID = '{x}'")
             time.sleep(0.4)
             litecoin = str(cur.fetchone()[0])
             client.send_message('LTC Click Bot', litecoin)
