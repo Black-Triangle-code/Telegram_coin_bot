@@ -24,6 +24,8 @@ chatId2 = config["TCB"]["chatid2"]
 botId = config["TCB"]["botid"]
 cycles = int(config["TCB"]["cycles"])
 errors = int(config["TCB"]["errors"])
+xStart = int(config["TCB"]["LTCstart"])
+maxbot=xStart+9
 
 bot = telepot.Bot(botId)
 
@@ -41,7 +43,7 @@ class RunChromeTests():
 db = sqlite3.connect('Account.db')
 cur = db.cursor()
 
-x = 1
+x = xStart
 
 bot.sendMessage(chatId2, "Начинаем добывать LTC")
 
@@ -51,8 +53,8 @@ while(True):
     print("Очередь аккаунта № " + str(x))
     output0 = "Очередь аккаунта № " + str(x)
     bot.sendMessage(chatId2, output0)
-    if x == maxbot:
-        x = x - maxbot + 1
+    #if x == maxbot:
+    #    x = x - maxbot + 1
     cur.execute(f"SELECT PHONE FROM Account WHERE ID = '{x}'")
     time.sleep(0.4)
     Phone = str(cur.fetchone()[0])
