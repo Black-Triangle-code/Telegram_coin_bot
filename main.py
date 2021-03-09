@@ -6,24 +6,35 @@ import time
 
 init()
 
+
 def console_picture():
     print(Style.BRIGHT + Fore.YELLOW)
-    print("  _____          _                           _            ____            _   ")
-    time.sleep(0.5)
-    print(" |_   _|  _ __  (_)   __ _   _ __     __ _  | |   ___    | __ )    ___   | |_ ")
-    time.sleep(0.5)
-    print("   | |   | '__| | |  / _` | | '_ \   / _` | | |  / _ \   |  _ \   / _ \  | __|")
-    time.sleep(0.5)
-    print("   | |   | |    | | | (_| | | | | | | (_| | | | |  __/   | |_) | | (_) | | |_ ")
-    time.sleep(0.5)
-    print("   |_|   |_|    |_|  \__,_| |_| |_|  \__, | |_|  \___|   |____/   \___/   \__|")
-    time.sleep(0.5)
-    print("                                     |___/                                    ")
-    time.sleep(0.5)
-console_picture()
-print("Нажми Enter чтобы запустить...")
-input()
+    print("Картинки не будет(")
+    time.sleep(0.1)
 
-while (True):
-    process = subprocess.Popen([sys.executable, "bot_V2.py"])
-    process.wait()
+
+console_picture()
+
+while True:
+    choose = input("Нажми 'BOT', 'BALANCE', 'CLIENT', 'DB', 'VIVOD' и Enter чтобы запустить...\n")
+    choose = choose.lower()
+    if choose == 'bot':
+        bot = subprocess.Popen([sys.executable, "bot_V2.py"])
+        bot.wait()
+        continue
+    elif choose == 'balance':
+        balance = subprocess.Popen([sys.executable, "balance(exp).py"])
+        balance.wait()
+        continue
+    elif choose == 'client':
+        client = subprocess.Popen([sys.executable, "create_client.py"])
+        client.wait()
+        continue
+    elif choose == 'db':
+        db = subprocess.Popen([sys.executable, "create_db.py"])
+        db.wait()
+        continue
+    elif choose == 'vivod':
+        Vivod = subprocess.Popen([sys.executable, "Vivod.py"])
+        Vivod.wait()
+        continue

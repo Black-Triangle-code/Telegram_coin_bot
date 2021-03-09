@@ -5,9 +5,14 @@ import time
 db = sqlite3.connect('Account.db')
 cur = db.cursor()
 
-x = 1
+cur.execute(f"SELECT COUNT(*) FROM Account")
+time.sleep(0.1)
+h = int(cur.fetchone()[0])
+print("Всего записано аккаунтов в БД: " + str(h))
 
-while(True):
+x = h - (h - 1)
+
+while True:
     print("Очередь аккаунта № " + str(x))
     cur.execute(f"SELECT PHONE FROM Account WHERE ID = '{x}'")
     time.sleep(0.2)
@@ -16,7 +21,7 @@ while(True):
     cur.execute(f"SELECT PASS FROM Account WHERE ID = '{x}'")
     time.sleep(0.2)
     password = str(cur.fetchone()[0])
-    print(password)
+    print("Пароль: " + password)
     cur.execute(f"SELECT API_ID FROM Account WHERE ID = '{x}'")
     time.sleep(0.2)
     api_id = str(cur.fetchone()[0])
@@ -26,8 +31,9 @@ while(True):
     session = str("anon" + str(x))
     client = TelegramClient(session, api_id, api_hash)
     client.start()
-    x = x + 1
+    print("Аккаунт № " + str(x) + " успешно активирован.")
     time.sleep(1)
-    if x == 32:
-        print("Aккаунты активированы!")
+    if x == h:
+        print("Все аккаунт(ы) активированы!")
         break
+    x = x + 1
