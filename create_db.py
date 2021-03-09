@@ -1,9 +1,9 @@
 import sqlite3
 
-db = sqlite3.connect('Account.db')
+db = sqlite3.connect('account.db')
 cur = db.cursor()
     # Создаем таблицу
-cur.execute("""CREATE TABLE IF NOT EXISTS Account (
+cur.execute("""CREATE TABLE IF NOT EXISTS account (
     ID INTEGER PRIMARY KEY,
     PHONE TEXT,
     PASS TEXT,
@@ -48,10 +48,10 @@ while True:
             break
     break
 
-cur.execute(f"SELECT PHONE FROM Account WHERE PHONE = '{Phone}'")
+cur.execute(f"SELECT PHONE FROM account WHERE PHONE = '{Phone}'")
 if cur.fetchone() is None:
-    cur.execute("""INSERT INTO Account(PHONE, PASS, API_ID, API_HASH, ACTIVITY, LITECOIN, DOGECOIN) VALUES (?,?,?,?,?,?,?);""", (Phone, password, Api_id, Api_hash, Activity, Litecoin, Dogecoin))
+    cur.execute("""INSERT INTO account(PHONE, PASS, API_ID, API_HASH, ACTIVITY, LITECOIN, DOGECOIN) VALUES (?,?,?,?,?,?,?);""", (Phone, password, Api_id, Api_hash, Activity, Litecoin, Dogecoin))
     db.commit()
     print("Зарегистрированно!")
-    for value in cur.execute("SELECT * FROM Account"):
+    for value in cur.execute("SELECT * FROM account"):
         print(value)

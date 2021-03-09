@@ -114,7 +114,7 @@ dmypy.json
 .pyre/
 
 # timed files
-Account.db
+account.db
 anon*.session
 test*.py
 per10.txt

@@ -8,15 +8,15 @@ import dictionary as d
 
 
 def login(x):
-    cur.execute(f"SELECT PHONE FROM Account WHERE ID = '{x}'")
+    cur.execute(f"SELECT PHONE FROM account WHERE ID = '{x}'")
     time.sleep(0.1)
     global Phone
     Phone = str(cur.fetchone()[0])
     print("Входим в аккаунт: " + Phone)
-    cur.execute(f"SELECT API_ID FROM Account WHERE ID = '{x}'")
+    cur.execute(f"SELECT API_ID FROM account WHERE ID = '{x}'")
     time.sleep(0.1)
     api_id = str(cur.fetchone()[0])
-    cur.execute(f"SELECT API_HASH FROM Account WHERE ID = '{x}'")
+    cur.execute(f"SELECT API_HASH FROM account WHERE ID = '{x}'")
     time.sleep(0.1)
     api_hash = str(cur.fetchone()[0])
     session = str("anon" + str(x))
@@ -51,10 +51,10 @@ def balance(bot, client):
 
 num = 0
 
-db = sqlite3.connect('Account.db')
+db = sqlite3.connect('account.db')
 cur = db.cursor()
 
-cur.execute(f"SELECT COUNT(*) FROM Account")
+cur.execute(f"SELECT COUNT(*) FROM account")
 h = int(cur.fetchone()[0])  # получаем кол-во записей в БД (на всякий случай обозначил тип)
 
 x = h - (h - 1)
@@ -70,12 +70,12 @@ while True:
     LTC = balance(d.l, client)
     time.sleep(0.5)
     DOGE = balance(d.d, client)
-    RUB = (LTC * d.coin['l'][d.t]) + (DOGE * d.coin['d'][d.t])
+    RUB = (LTC * d.coin[d.l][d.t]) + (DOGE * d.coin[d.d][d.t])
     print(str(RUB) + " RUB\n")
 
     SUM_LTC = SUM_LTC + LTC
     SUM_DOGE = SUM_DOGE + DOGE
-    SUM_RUB = SUM_RUB + (SUM_LTC * d.coin['l'][d.t]) + (SUM_DOGE * d.coin['d'][d.t])
+    SUM_RUB = SUM_RUB + (SUM_LTC * d.coin[d.l][d.t]) + (SUM_DOGE * d.coin[d.d][d.t])
 
     if x == h:  # выходим из цикла, когда все аккаунты опрошены
         break

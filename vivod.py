@@ -16,15 +16,15 @@ def check_float(some):
 
 
 def login(x):
-    cur.execute(f"SELECT PHONE FROM Account WHERE ID = '{x}'")
+    cur.execute(f"SELECT PHONE FROM account WHERE ID = '{x}'")
     time.sleep(0.1)
     global Phone
     Phone = str(cur.fetchone()[0])
     print("Входим в аккаунт: " + Phone)
-    cur.execute(f"SELECT API_ID FROM Account WHERE ID = '{x}'")
+    cur.execute(f"SELECT API_ID FROM account WHERE ID = '{x}'")
     time.sleep(0.1)
     api_id = str(cur.fetchone()[0])
-    cur.execute(f"SELECT API_HASH FROM Account WHERE ID = '{x}'")
+    cur.execute(f"SELECT API_HASH FROM account WHERE ID = '{x}'")
     time.sleep(0.1)
     api_hash = str(cur.fetchone()[0])
     session = str("anon" + str(x))
@@ -57,9 +57,9 @@ def withdraw(bot, client):
             client.send_message(d.coin[bot][d.bot], "💵 Withdraw")
             time.sleep(3)
             if bot == 'l':
-                cur.execute(f"SELECT LITECOIN FROM Account WHERE ID = '{x}'")
+                cur.execute(f"SELECT LITECOIN FROM account WHERE ID = '{x}'")
             elif bot == 'd':
-                cur.execute(f"SELECT DOGECOIN FROM Account WHERE ID = '{x}'")
+                cur.execute(f"SELECT DOGECOIN FROM account WHERE ID = '{x}'")
             time.sleep(0.4)
             purse = str(cur.fetchone()[0])
             client.send_message(d.coin[bot][d.bot], purse)
@@ -85,10 +85,10 @@ def withdraw(bot, client):
     return result
 
 
-db = sqlite3.connect('Account.db')
+db = sqlite3.connect('account.db')
 cur = db.cursor()
 
-cur.execute(f"SELECT COUNT(*) FROM Account")
+cur.execute(f"SELECT COUNT(*) FROM account")
 time.sleep(0.1)
 h = int(cur.fetchone()[0])
 x = h - (h - 1)

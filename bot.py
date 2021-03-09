@@ -34,15 +34,15 @@ def login(x):
     if x == h + 1:
         x = h - (h - 1)
     print("Очередь аккаунта № " + str(x))
-    cur.execute(f"SELECT PHONE FROM Account WHERE ID = '{x}'")
+    cur.execute(f"SELECT PHONE FROM account WHERE ID = '{x}'")
     time.sleep(0.1)
     global Phone
     Phone = str(cur.fetchone()[0])
     print("Входим в аккаунт: " + Phone)
-    cur.execute(f"SELECT API_ID FROM Account WHERE ID = '{x}'")
+    cur.execute(f"SELECT API_ID FROM account WHERE ID = '{x}'")
     time.sleep(0.1)
     api_id = str(cur.fetchone()[0])
-    cur.execute(f"SELECT API_HASH FROM Account WHERE ID = '{x}'")
+    cur.execute(f"SELECT API_HASH FROM account WHERE ID = '{x}'")
     time.sleep(0.1)
     api_hash = str(cur.fetchone()[0])
     session = str("anon" + str(x))
@@ -174,10 +174,10 @@ def bot(COIN_bot, CB):
         x = x + 1
 
 
-db = sqlite3.connect('Account.db')
+db = sqlite3.connect('account.db')
 
 cur = db.cursor()
-cur.execute(f"SELECT COUNT(*) FROM Account")
+cur.execute(f"SELECT COUNT(*) FROM account")
 time.sleep(0.1)
 
 

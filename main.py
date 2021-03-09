@@ -19,11 +19,11 @@ while True:
     choose = input("Нажми 'BOT', 'BALANCE', 'CLIENT', 'DB', 'VIVOD' и Enter чтобы запустить...\n")
     choose = choose.lower()
     if choose == 'bot':
-        bot = subprocess.Popen([sys.executable, "bot_V2.py"])
+        bot = subprocess.Popen([sys.executable, "bot.py"])
         bot.wait()
         continue
     elif choose == 'balance':
-        balance = subprocess.Popen([sys.executable, "balance(exp).py"])
+        balance = subprocess.Popen([sys.executable, "balance.py"])
         balance.wait()
         continue
     elif choose == 'client':
@@ -35,6 +35,6 @@ while True:
         db.wait()
         continue
     elif choose == 'vivod':
-        Vivod = subprocess.Popen([sys.executable, "Vivod.py"])
+        Vivod = subprocess.Popen([sys.executable, "vivod.py"])
         Vivod.wait()
         continue
