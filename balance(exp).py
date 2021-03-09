@@ -34,7 +34,7 @@ def balance(bot, client):
             tegmo = dlg
 
     client.send_message(COIN_name, "/balance")
-    time.sleep(0.5)
+    time.sleep(1)
     msgs = client.get_messages(tegmo, limit=1)
 
     currency = d.coin[bot][d.currency]
@@ -67,9 +67,9 @@ SUM_RUB = 0
 while True:
     login(x)  # логинимся и далее действуем от этого логина
     time.sleep(0.1)
-    LTC = balance('l', client)
+    LTC = balance(d.l, client)
     time.sleep(0.5)
-    DOGE = balance('d', client)
+    DOGE = balance(d.d, client)
     RUB = (LTC * d.coin['l'][d.t]) + (DOGE * d.coin['d'][d.t])
     print(str(RUB) + " RUB\n")
 

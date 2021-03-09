@@ -20,11 +20,15 @@ def park(url):
 doge = park(URL_DOGE)
 ltc = park(URL_LTC)
 
-Lite = {'name': 'LTC', 'currency': ' LTC', 'bot': 'LTC Click Bot', 'cb': 'Litecoin_click_bot', 'l_minimum_withdraw': 0.0003, 'transfer': ltc}
-Doge = {'name': 'DOGE', 'currency': ' DOGE', 'bot': 'DOGE Click Bot', 'cb': 'Dogecoin_click_bot', 'l_minimum_withdraw': 2, 'transfer': doge}
+Lite = {'name': 'LTC', 'currency': ' LTC', 'bot': 'LTC Click Bot', 'cb': 'Litecoin_click_bot',
+        'l_minimum_withdraw': 0.0003, 'transfer': ltc}
+Doge = {'name': 'DOGE', 'currency': ' DOGE', 'bot': 'DOGE Click Bot', 'cb': 'Dogecoin_click_bot',
+        'l_minimum_withdraw': 2, 'transfer': doge}
 
 coin = {'d': Doge, 'l': Lite}
 
+d = 'd'
+l = 'l'
 name = 'name'
 currency = 'currency'
 bot = 'bot'
