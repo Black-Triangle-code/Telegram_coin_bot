@@ -1,0 +1,9 @@
+__pycache__/
+*.db
+.venv
+.env
+venv
+env
+
+# if I use IDE
+.idea/
