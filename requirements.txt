@@ -1,7 +1,6 @@
 Telethon
 beautifulsoup4
 colorama
-request
 requests
 selenium
 urllib3
