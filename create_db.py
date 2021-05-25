@@ -1,4 +1,6 @@
 import sqlite3
+import os
+from dotenv import load_dotenv
 
 db = sqlite3.connect('Account.db')
 cur = db.cursor()
@@ -15,12 +17,13 @@ cur.execute("""CREATE TABLE IF NOT EXISTS Account (
 
 db.commit()
 
-Phone = "+88005553535"
-password = "13236546460"
-Api_id = "1488"
-Api_hash = "05xxxxxxx45xxxxxxx435xxxxx435xxxxxxx9"
-Activity = "ON"
-Litecoin = "ltc1qlhs4e459wwtu8sx7a4rtumtffs9lr4ktmfl6ny"
+load_dotenv()
+Phone = os.getenv('PHONE')
+password = os.getenv('PASSWORD')
+Api_id = os.getenv('API_ID')
+Api_hash = os.getenv('API_HASH')
+Activity = os.getenv('ACTIVITY')
+Litecoin = os.getenv('LITECOIN')
 
 cur.execute(f"SELECT PHONE FROM Account WHERE PHONE = '{Phone}'")
 if cur.fetchone() is None:
