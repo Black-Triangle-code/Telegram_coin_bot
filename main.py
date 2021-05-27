@@ -1,18 +1,18 @@
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from telethon import sync, events
 import requests
 import json
 import hashlib
 import time
 import re
-from telethon import TelegramClient
 import webbrowser
 import urllib.request
 import os
 import sqlite3
+
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from telethon.tl.functions.messages import GetBotCallbackAnswerRequest
+from telethon import TelegramClient
 
 class RunChromeTests():
     def testMethod(self):
@@ -28,28 +28,29 @@ class RunChromeTests():
 db = sqlite3.connect('Account.db')
 cur = db.cursor()
 
-x = 1
+num = 1
+while True:
+    try:
+        print("Очередь аккаунта № " + str(num))
+        if num == 23:
+            num = num - 22
+        cur.execute(f"SELECT PHONE FROM Account WHERE ID = '{num}'")
+        time.sleep(0.4)
+        Phone = str(cur.fetchone()[0])
+        print("Входим в аккаунт: " + Phone)
 
-while(True):
-    n = 0
-    u = 0
-    print("Очередь аккаунта № " + str(x))
-    if x == 23:
-        x = x - 22
-    cur.execute(f"SELECT PHONE FROM Account WHERE ID = '{x}'")
-    time.sleep(0.4)
-    Phone = str(cur.fetchone()[0])
-    print("Входим в аккаунт: " + Phone)
-
-    cur.execute(f"SELECT API_ID FROM Account WHERE ID = '{x}'")
-    time.sleep(0.4)
-    api_id = str(cur.fetchone()[0])
-    cur.execute(f"SELECT API_HASH FROM Account WHERE ID = '{x}'")
-    time.sleep(0.4)
-    api_hash = str(cur.fetchone()[0])
-    session = str("anon" + str(x))
-    client = TelegramClient(session, api_id, api_hash)
-    client.start()
+        cur.execute(f"SELECT API_ID FROM Account WHERE ID = '{num}'")
+        time.sleep(0.4)
+        api_id = str(cur.fetchone()[0])
+        cur.execute(f"SELECT API_HASH FROM Account WHERE ID = '{num}'")
+        time.sleep(0.4)
+        api_hash = str(cur.fetchone()[0])
+        session = str("anon" + str(num))
+        client = TelegramClient(session, api_id, api_hash)
+        client.start()
+    except sqlite3.OperationalError:
+        print('ERROR: Не найдены аккаунты')
+        break
 
     dlgs = client.get_dialogs()
     for dlg in dlgs:
@@ -57,6 +58,9 @@ while(True):
             tegmo = dlg
     client.send_message('LTC Click Bot', "🖥 Visit sites")
     time.sleep(30)
+
+    n = 0
+    u = 0
     while True:
         time.sleep(6)
         print("Нет заданий уже: " + str(u) + " раз")
@@ -67,11 +71,12 @@ while(True):
         if n == 10:
             print("Переходим на другой аккаунт")
             break
+
         msgs = client.get_messages(tegmo, limit=1)
-        for mes in msgs:
-            if re.search(r'\bseconds to get your reward\b', mes.message):
+        for msg in msgs:
+            if re.search(r'\bseconds to get your reward\b', msg.message):
                 print("Найдено reward")
-                str_a = str(mes.message)
+                str_a = str(msg.message)
                 zz = str_a.replace('You must stay on the site for', '')
                 qq = zz.replace('seconds to get your reward.', '')
                 waitin = int(qq)
@@ -79,9 +84,9 @@ while(True):
                 client.send_message('LTC Click Bot', "/visit")
                 time.sleep(3)
                 msgs2 = client.get_messages(tegmo, limit=1)
-                for mes2 in msgs2:
-                    button_data = mes2.reply_markup.rows[1].buttons[1].data
-                    message_id = mes2.id
+                for msg2 in msgs2:
+                    button_data = msg2.reply_markup.rows[1].buttons[1].data
+                    message_id = msg2.id
                     print("Перехожу по ссылке")
                     time.sleep(2)
                     url_rec = messages[0].reply_markup.rows[0].buttons[0].url
@@ -93,7 +98,6 @@ while(True):
                     mystr = mybytes.decode("utf8")
                     fp.close()
                     if re.search(r'\bSwitch to reCAPTCHA\b', mystr):
-                        from telethon.tl.functions.messages import GetBotCallbackAnswerRequest
                         resp = client(GetBotCallbackAnswerRequest(
                             'LTC Click Bot',
                             message_id,
@@ -106,7 +110,7 @@ while(True):
                         time.sleep(waitin)
 
                         time.sleep(2)
-            elif re.search(r'\bSorry\b', mes.message):
+            elif re.search(r'\bSorry\b', msg.message):
 
                 print("Найдено Sorry")
                 u = u + 1
@@ -120,10 +124,9 @@ while(True):
                 if fd == url_rec:
                     print("Найдено повторение переменной")
                     msgs2 = client.get_messages(tegmo, limit=1)
-                    for mes2 in msgs2:
-                        button_data = mes2.reply_markup.rows[1].buttons[1].data
-                        message_id = mes2.id
-                        from telethon.tl.functions.messages import GetBotCallbackAnswerRequest
+                    for msg2 in msgs2:
+                        button_data = msg2.reply_markup.rows[1].buttons[1].data
+                        message_id = msg2.id
                         resp = client(GetBotCallbackAnswerRequest(
                             tegmo,
                             message_id,
@@ -137,13 +140,13 @@ while(True):
 
                     my_file = open('per10.txt', 'w')
                     my_file.write(url_rec)
-                    print("Новая запись в файле сделана")
+                    print("Новая запись в файле per10.txt сделана")
                     time.sleep(16)
                     n = n + 1
 
                     if n == 10:
                         break
     time.sleep(1)
-    x = x + 1
-    if x == 23:
+    num = num + 1
+    if num == 23:
         break

@@ -1,9 +1,10 @@
 import sqlite3
 import time
-from telethon import TelegramClient
-from telethon import sync, events
 import re
 import json
+
+from telethon import TelegramClient
+from telethon import sync, events
 
 
 db = sqlite3.connect('Account.db')
@@ -11,16 +12,15 @@ cur = db.cursor()
 
 x = 1
 
-while(True):
+while True:
     if x == 32:
-        
-        print("Конец")
+        print("Конец. Последняя сессия.")
         break
+
     cur.execute(f"SELECT PHONE FROM Account WHERE ID = '{x}'")
     time.sleep(0.4)
     Phone = str(cur.fetchone()[0])
     print("Входим в аккаунт: " + Phone)
-
     cur.execute(f"SELECT API_ID FROM Account WHERE ID = '{x}'")
     time.sleep(0.4)
     api_id = str(cur.fetchone()[0])
@@ -68,3 +68,4 @@ while(True):
 
     x = x + 1
     time.sleep(1)
+    # db.commit()

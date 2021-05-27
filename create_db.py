@@ -1,10 +1,11 @@
 import sqlite3
 import os
+
 from dotenv import load_dotenv
 
 db = sqlite3.connect('Account.db')
 cur = db.cursor()
-    # Создаем таблицу
+
 cur.execute("""CREATE TABLE IF NOT EXISTS Account (
     ID INTEGER PRIMARY KEY,
     PHONE TEXT,
@@ -14,7 +15,6 @@ cur.execute("""CREATE TABLE IF NOT EXISTS Account (
     ACTIVITY TEXT,
     LITECOIN TEXT
 )""")
-
 db.commit()
 
 load_dotenv()
@@ -29,6 +29,6 @@ cur.execute(f"SELECT PHONE FROM Account WHERE PHONE = '{Phone}'")
 if cur.fetchone() is None:
     cur.execute("""INSERT INTO Account(PHONE, PASS, API_ID, API_HASH, ACTIVITY, LITECOIN) VALUES (?,?,?,?,?,?);""", (Phone, password, Api_id, Api_hash, Activity, Litecoin))
     db.commit()
-    print("Зарегистрированно!")
+    print("Зарегистрирован:")
     for value in cur.execute("SELECT * FROM Account"):
         print(value)
