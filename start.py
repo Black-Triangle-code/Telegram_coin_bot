@@ -1,8 +1,9 @@
 import os
-import subprocess
 import sys
-from colorama import init, Fore, Back, Style
+import subprocess
 import time
+
+from colorama import init, Fore, Style
 
 init()
 
@@ -25,6 +26,9 @@ console_picture()
 print("Нажми Enter чтобы запустить...")
 input()
 
-while (True):
-    process = subprocess.Popen([sys.executable, "main.py"])
-    process.wait()
+try:
+    while True:
+        process = subprocess.Popen([sys.executable, "main.py"])
+        process.wait()
+except KeyboardInterrupt:
+    print(Style.BRIGHT + Fore.RED, '--- вы остановили бота ---')
