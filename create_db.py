@@ -1,6 +1,6 @@
 import sqlite3
 
-from config import phone, password, api_id, api_hash, activity, litecoin
+from config import activity, api_hash, api_id, litecoin, password, phone
 
 db = sqlite3.connect("Account.db")
 cur = db.cursor()
@@ -18,7 +18,7 @@ cur.execute(
 )
 db.commit()
 
-cur.execute(f"SELECT PHONE FROM Account WHERE PHONE = '{Phone}'")
+cur.execute(f"SELECT PHONE FROM Account WHERE PHONE = '{phone}'")
 if cur.fetchone() is None:
     cur.execute(
         """INSERT INTO Account(PHONE, PASS, API_ID, API_HASH, ACTIVITY, LITECOIN) VALUES (?,?,?,?,?,?);""",

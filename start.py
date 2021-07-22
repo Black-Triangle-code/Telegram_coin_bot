@@ -4,28 +4,27 @@ import time
 
 from colorama import Fore, Style, init
 
+
 init()
 
 
 def console_picture():
-    print(Style.BRIGHT + Fore.GREEN)
-    print(r"   _____ ________  __________   ___________ ________  ________       ____  ____  ______")
+    print(Style.BRIGHT + Fore.YELLOW)
+    print(r"  _____          _                           _            ____            _   ")
     time.sleep(0.5)
-    print(r"  / ___// ____/  |/  / ____/ | / /  _/ ___// ____/ / / / ____/      / __ )/ __ \/_  __/")
+    print(r" |_   _|  _ __  (_)   __ _   _ __     __ _  | |   ___    | __ )    ___   | |_ ")
     time.sleep(0.5)
-    print(r"  \__ \/ __/ / /|_/ / __/ /  |/ // / \__ \/ /   / /_/ / __/        / __  / / / / / /   ")
+    print(r"   | |   | '__| | |  / _` | | '_ \   / _` | | |  / _ \   |  _ \   / _ \  | __|")
     time.sleep(0.5)
-    print(r" ___/ / /___/ /  / / /___/ /|  // / ___/ / /___/ __  / /___       / /_/ / /_/ / / /    ")
+    print(r"   |_|   |_|    |_|  \__,_| |_| |_|  \__, | |_|  \___|   |____/   \___/   \__|")
     time.sleep(0.5)
-    print(r"/____/_____/_/  /_/_____/_/ |_/___//____/\____/_/ /_/_____/      /_____/\____/ /_/     \n")
+    print(r"                                     |___/                                    ")
     time.sleep(0.5)
 
-
-console_picture()
-print("Нажми Enter чтобы запустить...")
-input()
 
 try:
+    console_picture()
+    input("Нажми Enter чтобы запустить...")
     while True:
         process = subprocess.Popen([sys.executable, "main.py"])
         process.wait()

@@ -1,0 +1,6 @@
+phone = "+341283488239"
+password = "pass123"
+api_id = "12341235"
+api_hash = "978x9876x897x87x2x5x000x81203"
+activity = "on"
+litecoin = "hq0n2v3450nxm0n9871c23x4n8sredfci92834dasciofuhy243"
