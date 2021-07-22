@@ -1,24 +1,23 @@
-import os
-import sys
 import subprocess
+import sys
 import time
 
-from colorama import init, Fore, Style
+from colorama import Fore, Style, init
 
 init()
 
 
 def console_picture():
     print(Style.BRIGHT + Fore.GREEN)
-    print("   _____ ________  __________   ___________ ________  ________       ____  ____  ______")
+    print(r"   _____ ________  __________   ___________ ________  ________       ____  ____  ______")
     time.sleep(0.5)
-    print("  / ___// ____/  |/  / ____/ | / /  _/ ___// ____/ / / / ____/      / __ )/ __ \/_  __/")
+    print(r"  / ___// ____/  |/  / ____/ | / /  _/ ___// ____/ / / / ____/      / __ )/ __ \/_  __/")
     time.sleep(0.5)
-    print("  \__ \/ __/ / /|_/ / __/ /  |/ // / \__ \/ /   / /_/ / __/        / __  / / / / / /   ")
+    print(r"  \__ \/ __/ / /|_/ / __/ /  |/ // / \__ \/ /   / /_/ / __/        / __  / / / / / /   ")
     time.sleep(0.5)
-    print(" ___/ / /___/ /  / / /___/ /|  // / ___/ / /___/ __  / /___       / /_/ / /_/ / / /    ")
+    print(r" ___/ / /___/ /  / / /___/ /|  // / ___/ / /___/ __  / /___       / /_/ / /_/ / / /    ")
     time.sleep(0.5)
-    print("/____/_____/_/  /_/_____/_/ |_/___//____/\____/_/ /_/_____/      /_____/\____/ /_/     \n")
+    print(r"/____/_____/_/  /_/_____/_/ |_/___//____/\____/_/ /_/_____/      /_____/\____/ /_/     \n")
     time.sleep(0.5)
 
 
@@ -31,4 +30,4 @@ try:
         process = subprocess.Popen([sys.executable, "main.py"])
         process.wait()
 except KeyboardInterrupt:
-    print(Style.BRIGHT + Fore.RED, '--- вы остановили бота ---')
+    print(Style.BRIGHT + Fore.RED, "--- вы остановили бота ---")

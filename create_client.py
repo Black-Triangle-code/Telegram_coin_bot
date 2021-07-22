@@ -3,7 +3,7 @@ import time
 
 from telethon import TelegramClient
 
-db = sqlite3.connect('Account.db')
+db = sqlite3.connect("Account.db")
 cur = db.cursor()
 
 num = 1

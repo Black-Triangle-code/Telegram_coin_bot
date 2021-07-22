@@ -1,12 +1,9 @@
 import sqlite3
 import time
-import re
-import json
 
 from telethon import TelegramClient
-from telethon import sync, events
 
-db = sqlite3.connect('Account.db')
+db = sqlite3.connect("Account.db")
 cur = db.cursor()
 
 num = 1
@@ -34,17 +31,17 @@ while True:
 
     dlgs = client.get_dialogs()
     for dlg in dlgs:
-        if dlg.title == 'LTC Click Bot':
+        if dlg.title == "LTC Click Bot":
             tegmo = dlg
 
-    client.send_message('LTC Click Bot', "/balance")
+    client.send_message("LTC Click Bot", "/balance")
     time.sleep(3)
     msgs = client.get_messages(tegmo, limit=1)
 
     for msg in msgs:
         str_a = str(msg.message)
-        zz = str_a.replace('Available balance: ', '')
-        qq = zz.replace(' LTC', '')
+        zz = str_a.replace("Available balance: ", "")
+        qq = zz.replace(" LTC", "")
         print(qq)
         waitin = float(qq)
 
